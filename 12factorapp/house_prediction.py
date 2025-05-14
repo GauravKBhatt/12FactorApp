@@ -8,6 +8,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler
 import warnings
+import pickle
 warnings.filterwarnings('ignore')
 
 # Random seed for reproducibility
@@ -191,3 +192,7 @@ print("\nSample Prediction:")
 print(f"Actual Price: ${actual_price:.2f}")
 print(f"Predicted Price: ${predicted_price:.2f}")
 print(f"Difference: ${abs(actual_price - predicted_price):.2f}")
+
+# change the trained model to a pickle file``
+with open("house_price_model.pkl", "wb") as f:
+    pickle.dump(model, f)
