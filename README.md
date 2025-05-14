@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 12FactorApp
 
 <a target="_blank" href="https://cookiecutter-data-science.drivendata.org/">
@@ -59,3 +60,6 @@ Simple Fast API application
 
 --------
 
+=======
+# 12FactorApp
+>>>>>>> f77074382577a658baaf8074d3ff69dcc16fcff6
