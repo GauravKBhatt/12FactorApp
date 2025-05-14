@@ -1,0 +1,13 @@
+pandas
+numpy
+sklearn
+matplotlib
+loguru
+mkdocs
+pip
+pytest
+python-dotenv
+ruff
+tqdm
+typer
+-e .
