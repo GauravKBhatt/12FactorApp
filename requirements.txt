@@ -1,6 +1,6 @@
 pandas
 numpy
-sklearn
+scikit-learn
 matplotlib
 loguru
 mkdocs
@@ -10,4 +10,7 @@ python-dotenv
 ruff
 tqdm
 typer
+fastapi
+pillow
+uvicorn
 -e .
