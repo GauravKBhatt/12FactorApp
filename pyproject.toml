@@ -29,4 +29,3 @@ extend-select = ["I"]  # Add import sorting
 [tool.ruff.lint.isort]
 known-first-party = ["12factorapp"]
 force-sort-within-sections = true
-
