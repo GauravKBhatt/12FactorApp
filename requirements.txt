@@ -16,4 +16,5 @@ uvicorn
 pydantic
 pydantic_settings
 httpx
+pre-commit
 -e .
