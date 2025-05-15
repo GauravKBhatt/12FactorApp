@@ -1,0 +1,8 @@
+site_name: 12FactorApp
+theme:
+  name: material
+
+nav:
+  - Home: docs/index.md
+  - Getting Started: docs/getting-started.md
+  # Add more pages as needed, e.g. API Reference, Development Guide, etc.

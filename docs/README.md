@@ -1,12 +1,21 @@
-Generating the docs
-----------
+# Documentation Guide
 
-Use [mkdocs](http://www.mkdocs.org/) structure to update the documentation. 
+This project uses [MkDocs](http://www.mkdocs.org/) for documentation.
 
-Build locally with:
+## Building Documentation
 
-    mkdocs build
+To build the documentation locally:
 
-Serve locally with:
+```sh
+mkdocs build
+```
 
-    mkdocs serve
+## Serving Documentation
+
+To serve the documentation locally (with live reload):
+
+```sh
+mkdocs serve
+```
+
+Documentation source files are located in `docs/docs/`.

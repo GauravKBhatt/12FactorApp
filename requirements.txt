@@ -17,4 +17,5 @@ pydantic
 pydantic_settings
 httpx
 pre-commit
+mkdocs-materialS
 -e .
