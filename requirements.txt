@@ -15,4 +15,5 @@ pillow
 uvicorn
 pydantic
 pydantic_settings
+httpx
 -e .
