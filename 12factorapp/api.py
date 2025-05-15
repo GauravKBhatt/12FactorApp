@@ -1,8 +1,10 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-import numpy as np
+from models.models import HouseFeatures
+from models.models import HouseFeatures
 import pickle
 import os
+import numpy as np
 
 # Load the trained model
 MODEL_PATH = os.path.join(os.path.dirname(__file__), 'house_price_model.pkl')
@@ -17,19 +19,6 @@ FEATURES = [
 ]
 
 app = FastAPI(title="House Price Prediction API")
-
-class HouseFeatures(BaseModel):
-    bedrooms: int
-    bathrooms: float
-    sqft_living: float
-    sqft_lot: float
-    floors: float
-    waterfront: int
-    view: int
-    condition: int
-    house_age: int
-    was_renovated: int
-    total_sqft: float
 
 @app.get("/")
 def root():
