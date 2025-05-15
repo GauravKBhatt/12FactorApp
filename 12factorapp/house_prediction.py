@@ -9,17 +9,26 @@ from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler
 import warnings
 import pickle
+import os
+from dotenv import load_dotenv
 warnings.filterwarnings('ignore')
 
-# Random seed for reproducibility
+# Load environment variables from .env file
+load_dotenv()
+MODEL_OUTPUT_PATH = os.getenv('MODEL_OUTPUT_PATH', 'house_price_model.pkl')
+TEST_SIZE = float(os.getenv('TEST_SIZE', 0.2))
+RANDOM_SEED = int(os.getenv('RANDOM_SEED', 42))
 
-np.random.seed(42)
+# Random seed for reproducibility
+np.random.seed(RANDOM_SEED)
 
 # Load the data. Opens dialouge box to locally upload the data. (later will figure enter directly)
 
 def load_data():
-    # Load the data from the specified CSV file path
-    data_path = '../data/processed/data.csv'
+    # Load environment variables from .env file
+    load_dotenv()
+    # Get the data path from the environment variable
+    data_path = os.getenv('DATA_PATH', '../data/processed/data.csv')
     df = pd.read_csv(data_path)
     print(f"Dataset shape: {df.shape}")
     return df
@@ -125,7 +134,9 @@ X, y = preprocess_data(df)
 
 def build_model(X, y):
     # Split the data into training and testing sets
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=TEST_SIZE, random_state=RANDOM_SEED
+    )
 
     # Standardize features
     scaler = StandardScaler()
@@ -193,6 +204,6 @@ print(f"Actual Price: ${actual_price:.2f}")
 print(f"Predicted Price: ${predicted_price:.2f}")
 print(f"Difference: ${abs(actual_price - predicted_price):.2f}")
 
-# change the trained model to a pickle file``
-with open("house_price_model.pkl", "wb") as f:
+# change the trained model to a pickle file
+with open(MODEL_OUTPUT_PATH, "wb") as f:
     pickle.dump(model, f)

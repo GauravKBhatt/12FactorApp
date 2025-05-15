@@ -13,4 +13,6 @@ typer
 fastapi
 pillow
 uvicorn
+pydantic
+pydantic_settings
 -e .

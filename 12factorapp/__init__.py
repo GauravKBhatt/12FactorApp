@@ -1,1 +1,2 @@
-from 12factorapp import config  # noqa: F401
+# This file makes this directory a Python package.
+

@@ -1,13 +1,36 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from models.models import HouseFeatures
-from models.models import HouseFeatures
+from pydantic_settings import BaseSettings
 import pickle
 import os
 import numpy as np
 
+# Use Pydantic BaseSettings for environment variables
+class Settings(BaseSettings):
+    MODEL_PATH: str = os.path.join(os.path.dirname(__file__), 'house_price_model.pkl')
+    API_TITLE: str = "House Price Prediction API"
+
+    model_config ={
+        "extra":"allow",
+        "env_file": os.path.join(os.path.dirname(os.path.dirname(__file__)), ".env")
+    }
+settings = Settings()
+
+class HouseFeatures(BaseModel):
+    bedrooms: int
+    bathrooms: float
+    sqft_living: float
+    sqft_lot: float
+    floors: float
+    waterfront: int
+    view: int
+    condition: int
+    house_age: int
+    was_renovated: int
+    total_sqft: float
+
 # Load the trained model
-MODEL_PATH = os.path.join(os.path.dirname(__file__), 'house_price_model.pkl')
+MODEL_PATH = settings.MODEL_PATH
 with open(MODEL_PATH, 'rb') as f:
     model = pickle.load(f)
 
@@ -18,11 +41,12 @@ FEATURES = [
     'was_renovated', 'total_sqft'
 ]
 
-app = FastAPI(title="House Price Prediction API")
+API_TITLE = settings.API_TITLE
+app = FastAPI(title=API_TITLE)
 
 @app.get("/")
 def root():
-    return {"message": "Welcome to the House Price Prediction API!"}
+    return {"message": "Welcome to the House Price Prediction API! Goto /docs for the full functionality."}
 
 @app.post("/predict")
 def predict_price(features: HouseFeatures):
